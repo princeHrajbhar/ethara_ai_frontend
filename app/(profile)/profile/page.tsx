@@ -37,11 +37,11 @@ export default function ProfilePage() {
         error?.response?.status === 401 ||
         error?.response?.status === 403
       ) {
-        router.push("/auth/login");
+        router.push("/login");
         return;
       }
 
-      router.push("/auth/login");
+      router.push("/login");
     } finally {
       setLoading(false);
     }
@@ -53,11 +53,11 @@ export default function ProfilePage() {
 
       await api.post("/auth/logout");
 
-      router.push("/auth/login");
+      router.push("/login");
     } catch (error) {
       console.error(error);
 
-      router.push("/auth/login");
+      router.push("/login");
     } finally {
       setLogoutLoading(false);
     }

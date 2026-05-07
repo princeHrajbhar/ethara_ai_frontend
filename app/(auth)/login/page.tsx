@@ -1,9 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 import { api } from "@/app/lib/api";
 
 export default function LoginPage() {
@@ -37,16 +35,14 @@ export default function LoginPage() {
         "/auth/login",
         formData
       );
-
-      console.log(response.data);
-
+      // Redirect to profile page
       router.push("/profile");
     } catch (error: any) {
       console.error(error);
 
       alert(
         error?.response?.data?.message ||
-          "Login failed"
+          "Something went wrong"
       );
     } finally {
       setLoading(false);
@@ -54,9 +50,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#0F172A] px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#0F172A] px-4">
       <div className="w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-8 shadow-2xl">
-        
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-white">
             Welcome Back
@@ -106,7 +101,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-indigo-600 py-3 font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full rounded-xl bg-indigo-600 py-3 font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-50"
           >
             {loading ? "Loading..." : "Login"}
           </button>
@@ -114,12 +109,12 @@ export default function LoginPage() {
 
         <p className="mt-6 text-center text-sm text-slate-400">
           Don&apos;t have an account?
-          <Link
+          <a
             href="/auth/register"
             className="ml-1 font-medium text-indigo-400 hover:text-indigo-300"
           >
             Register
-          </Link>
+          </a>
         </p>
       </div>
     </div>
